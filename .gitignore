@@ -14,5 +14,6 @@ artifacts/*.pt
 .coverage
 htmlcov/
 
+docs/
 *.zip
 *.log
