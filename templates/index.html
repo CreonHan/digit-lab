@@ -43,8 +43,8 @@
       </div>
     </div>
     <div id="bars" class="bars" aria-live="polite"></div>
-    <p class="hint">每次笔画移动都会重新送入 28x28 灰度图，右侧柱形表示模型 softmax 输出。</p>
+    <p class="hint">每次笔画移动都会自动裁剪笔迹、居中为 28x28 灰度图，右侧柱形表示模型 softmax 输出。</p>
   </div>
 </section>
-<script src="{{ url_for('static', filename='js/draw.js') }}"></script>
+<script src="{{ url_for('static', filename='js/draw.js') }}?v=preprocess-center-1"></script>
 {% endblock %}
