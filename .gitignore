@@ -8,7 +8,6 @@ datasets/
 train.csv
 test.csv
 artifacts/*.pt
-!artifacts/.gitkeep
 !artifacts/digit_cnn.pt
 
 .pytest_cache/
