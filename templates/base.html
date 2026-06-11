@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}手写数字识别{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="{{ url_for('workspace') }}">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 76 76" role="img" focusable="false">
+          <rect x="6" y="6" width="64" height="64" rx="14" />
+          <path class="logo-grid" d="M22 18H54V54H22ZM32.67 18V54M43.33 18V54M22 30H54M22 42H54" />
+          <path class="logo-stroke" d="M50 22C42 17 29 18 27 28C25 38 45 35 48 44C51 55 33 60 25 52" />
+          <circle class="logo-dot" cx="25" cy="52" r="3.8" />
+        </svg>
+      </span>
+      <span>Digit Lab</span>
+    </a>
+    <nav class="nav">
+      <a href="{{ url_for('workspace') }}">识别</a>
+      {% if current_user %}
+        <a href="{{ url_for('history') }}">历史</a>
+      {% endif %}
+      <a href="{{ url_for('about') }}">关于</a>
+      {% if current_user %}
+        <form action="{{ url_for('logout') }}" method="post">
+          <button class="ghost-button" type="submit">退出 {{ current_user }}</button>
+        </form>
+      {% else %}
+        <a href="{{ url_for('login') }}">登录</a>
+        <a href="{{ url_for('register') }}">注册</a>
+      {% endif %}
+    </nav>
+  </header>
+
+  <main class="page">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash">
+          {% for message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}注册 - 手写数字识别{% endblock %}
+{% block content %}
+<section class="auth-shell">
+  <div class="auth-copy">
+    <p class="eyebrow">LOCAL ACCOUNT</p>
+    <h1>创建本地实验账号</h1>
+    <p>账号、密码哈希和识别历史都保存在本机 SQLite 数据库中。不想注册也可以先游客试用。</p>
+  </div>
+  <div class="auth-card">
+    <h2>注册</h2>
+    <form method="post">
+      <label>用户名
+        <input name="username" minlength="3" autocomplete="username" required>
+      </label>
+      <label>密码
+        <input name="password" type="password" minlength="6" autocomplete="new-password" required>
+      </label>
+      <button class="primary-button" type="submit">创建账号</button>
+    </form>
+    <a class="secondary-link auth-skip" href="{{ url_for('workspace') }}">游客试用，不保存历史</a>
+    <p class="form-note">已有账号？<a href="{{ url_for('login') }}">返回登录</a></p>
+  </div>
+</section>
+{% endblock %}

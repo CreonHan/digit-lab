@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}登录 - 手写数字识别{% endblock %}
+{% block content %}
+<section class="auth-shell">
+  <div class="auth-copy">
+    <p class="eyebrow">MNIST CNN DEMO</p>
+    <h1>直接试用实时识别</h1>
+    <p>无需登录也可以手写数字并查看概率分布；登录后系统会记录你的每一次识别结果。</p>
+  </div>
+  <div class="auth-card">
+    <h2>用户登录</h2>
+    <form method="post">
+      <label>用户名
+        <input name="username" autocomplete="username" required>
+      </label>
+      <label>密码
+        <input name="password" type="password" autocomplete="current-password" required>
+      </label>
+      <button class="primary-button" type="submit">登录并保存历史</button>
+    </form>
+    <a class="secondary-link auth-skip" href="{{ url_for('workspace') }}">游客试用，不保存历史</a>
+    <p class="form-note">还没有账号？<a href="{{ url_for('register') }}">注册一个</a></p>
+  </div>
+</section>
+{% endblock %}

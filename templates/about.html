@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}关于 - 手写数字识别{% endblock %}
+{% block content %}
+<section class="panel about-panel">
+  <p class="eyebrow">ABOUT PROJECT</p>
+  <h1>关于本项目</h1>
+  <div class="about-grid">
+    <article>
+      <h2>项目背景</h2>
+      <p>本项目面向 Python 课程设计，主题为手写数字识别。系统将用户手写内容转换为 28x28 灰度图，并使用卷积神经网络预测数字类别。</p>
+    </article>
+    <article>
+      <h2>使用步骤</h2>
+      <p>注册账号，进入识别台，在左侧画布写数字，右侧实时查看 0-9 的概率分布；历史页面可查看登录用户的识别记录。</p>
+    </article>
+    <article>
+      <h2>开发环境</h2>
+      <p>Python 3.12，Flask Web 服务，PyTorch 模型训练与推理，SQLite 本地数据存储，HTML Canvas 前端绘图。</p>
+    </article>
+    <article>
+      <h2>依赖与模型来源</h2>
+      <p>依赖清单见 requirements.txt。模型结构和训练代码由项目编写，训练数据来自 torchvision 自动下载的 MNIST 数据集。</p>
+    </article>
+  </div>
+</section>
+{% endblock %}

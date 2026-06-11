@@ -1,0 +1,5 @@
+Flask>=3.0,<4
+torch>=2.5
+torchvision>=0.20
+Pillow>=10
+reportlab>=4

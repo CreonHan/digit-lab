@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}历史记录 - 手写数字识别{% endblock %}
+{% block content %}
+<section class="panel history-panel">
+  <div class="panel-head">
+    <div>
+      <p class="eyebrow">USER TRACE</p>
+      <h1>识别历史</h1>
+    </div>
+    <a class="secondary-link" href="{{ url_for('workspace') }}">继续识别</a>
+  </div>
+  {% if rows %}
+    <div class="history-list">
+      {% for row in rows %}
+        <article class="history-item">
+          {% if row.thumbnail %}
+            <img src="{{ row.thumbnail }}" alt="历史手写图像">
+          {% endif %}
+          <div>
+            <strong>预测为 {{ row.predicted_digit }}</strong>
+            <p>{{ row.created_at }} · 置信度 {{ "%.1f"|format(row.confidence * 100) }}%</p>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="empty">暂无历史记录，回到识别台写一个数字即可生成记录。</p>
+  {% endif %}
+</section>
+{% endblock %}

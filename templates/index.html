@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}识别台 - 手写数字识别{% endblock %}
+{% block content %}
+<section class="workspace">
+  <div class="panel draw-panel">
+    <div class="panel-head">
+      <div>
+        <p class="eyebrow">LIVE CANVAS</p>
+        <h1>手写数字识别</h1>
+      </div>
+      <div class="status-pill {{ 'ready' if model_ready else 'blocked' }}">
+        {{ "模型已加载" if model_ready else "模型未就绪" }}
+      </div>
+    </div>
+    {% if not model_ready %}
+      <div class="warning">{{ model_error }}</div>
+    {% endif %}
+    <div class="canvas-wrap">
+      <canvas id="draw-canvas" width="420" height="420" aria-label="手写数字画布"></canvas>
+      <div class="crop-frame"></div>
+    </div>
+    <div class="toolbar">
+      <button class="secondary-button" id="clear-button" type="button">清空</button>
+      <span id="predict-status">
+        {% if current_user %}
+          在黑色画布上写一个白色数字，结果会保存到历史
+        {% else %}
+          游客可直接试用；登录后保存历史
+        {% endif %}
+      </span>
+    </div>
+  </div>
+
+  <div class="panel result-panel">
+    <div class="panel-head">
+      <div>
+        <p class="eyebrow">PROBABILITY</p>
+        <h2>实时概率分布</h2>
+      </div>
+      <div class="prediction-badge">
+        <span id="prediction-digit">-</span>
+        <small>预测</small>
+      </div>
+    </div>
+    <div id="bars" class="bars" aria-live="polite"></div>
+    <p class="hint">每次笔画移动都会重新送入 28x28 灰度图，右侧柱形表示模型 softmax 输出。</p>
+  </div>
+</section>
+<script src="{{ url_for('static', filename='js/draw.js') }}"></script>
+{% endblock %}
